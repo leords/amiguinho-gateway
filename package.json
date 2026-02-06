@@ -5,10 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node server.js",
-    "build": "prisma generate && prisma migrate deploy",
-    "postinstall": "prisma generate",
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",

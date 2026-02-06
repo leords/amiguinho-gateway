@@ -9,6 +9,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(rotas);
+//app.use(rotas);
+
+rotas.get('/', (req, res) => {
+    res.send('API OK')
+})
 
 app.listen(PORT, () => console.log("Server running on port 4000"))

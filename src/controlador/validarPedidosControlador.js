@@ -23,7 +23,7 @@ class validarPedidosControlador {
                 resultado: {
                     salvo: resultado.salvo,
                     duplicado: resultado.duplicado,
-                    falhou: resultado.falho
+                    falhou: resultado.falhou
                 },
                 resumo: {
                     total: pedidos.length,

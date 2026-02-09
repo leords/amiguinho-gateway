@@ -1,4 +1,5 @@
 import { ValidarPedidoServico } from "../../src/servico/validarPedidosServico.js"
+import concorrencia from "../infra/concorrencia.js";
 
 class validarPedidosControlador {
     async tratar(req, res) {
@@ -16,8 +17,12 @@ class validarPedidosControlador {
         console.log(`📥 Recebida requisição com ${pedidos.length} pedidos`);
 
         try {
-            const servico = new ValidarPedidoServico();
-            const resultado = await servico.executar(pedidos);
+            // aqui chamo a concorrencia que vai tratar uma requisição por vez.
+            // concorrencia já foi instanciada dentro dela mesmo, para ser instancia unica.
+            const resultado = await concorrencia.executar(async () => {
+                const service = new ValidarPedidoServico();
+                return await service.executar(pedidos);
+            })
             return res.json({
                 sucesso: true,
                 resultado: {

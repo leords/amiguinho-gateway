@@ -19,10 +19,13 @@ class validarPedidosControlador {
         try {
             // aqui chamo a concorrencia que vai tratar uma requisição por vez.
             // concorrencia já foi instanciada dentro dela mesmo, para ser instancia unica.
-            const resultado = await concorrencia.executar(async () => {
+            const resultado = await concorrencia.executar(
+                //criando a função. (fn)
+                async () => {
                 const service = new ValidarPedidoServico();
                 return await service.executar(pedidos);
-            })
+                }
+            )
             return res.json({
                 sucesso: true,
                 resultado: {
